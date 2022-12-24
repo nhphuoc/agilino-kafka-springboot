@@ -1,7 +1,7 @@
 version: "3"
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.1.0-1-ubi8
+    image: confluentinc/cp-zookeeper:7.3.1
     container_name: zookeeper
     environment:
       - "ZOOKEEPER_CLIENT_PORT=2181"
@@ -10,7 +10,7 @@ services:
       - agilino-network
 
   kafka:
-    image: confluentinc/cp-kafka:7.1.0-1-ubi8
+    image: confluentinc/cp-kafka:7.3.1
     container_name: kafka
     depends_on:
       - zookeeper
