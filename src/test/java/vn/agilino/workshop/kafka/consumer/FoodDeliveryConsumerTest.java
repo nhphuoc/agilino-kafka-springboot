@@ -48,4 +48,19 @@ class FoodDeliveryConsumerTest {
         // but we not get it again
         Assertions.assertNull(foodDeliveryConsumer.getOrder(3));
     }
+
+    @Test
+    void getOrder_prevent_not_allowed_food() {
+        // given a delivery order
+        FoodDeliveryConsumer foodDeliveryConsumer = new FoodDeliveryConsumer();
+        FoodOrderDTO deliveryDTO = new FoodOrderDTO();
+        deliveryDTO.setId(3);
+        deliveryDTO.setAddress("Can Tho University");
+        deliveryDTO.setFoodName("Com ga");
+        // when we process the order first time
+        foodDeliveryConsumer.foodOrderConsumer(deliveryDTO);
+
+        // then we get a result
+        Assertions.assertNull(foodDeliveryConsumer.getOrder(3));
+    }
 }
