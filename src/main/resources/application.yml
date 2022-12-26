@@ -2,4 +2,5 @@ server:
   port: 8080
 spring:
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: kafka.agilino.app:29092
+    topic-name: change-me2
