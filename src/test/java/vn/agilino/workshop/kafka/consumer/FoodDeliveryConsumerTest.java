@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import vn.agilino.workshop.dto.FoodOrderDTO;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FoodDeliveryConsumerTest {
 
     @Test

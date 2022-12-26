@@ -1,9 +1,5 @@
 package vn.agilino.workshop.dto;
 
-import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class FoodOrderDTO {
 
     private int id;

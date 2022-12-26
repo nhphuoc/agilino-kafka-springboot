@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.agilino.workshop.dto.FoodOrderDTO;
 import vn.agilino.workshop.kafka.producer.FoodDeliveryProducer;
 
+/**
+ * REST Controller for the food delivery company to send food to the customers.
+ */
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class DeliveryController {

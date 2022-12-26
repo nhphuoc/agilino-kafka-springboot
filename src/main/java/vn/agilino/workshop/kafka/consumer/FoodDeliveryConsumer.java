@@ -11,6 +11,9 @@ import vn.agilino.workshop.constant.KafkaGroup;
 import vn.agilino.workshop.dto.FoodOrderDTO;
 import vn.agilino.workshop.kafka.producer.FoodDeliveryProducer;
 
+/**
+ * Kafka consumer will listen for new messages on the given kafka topic.
+ */
 @Service
 public class FoodDeliveryConsumer {
 

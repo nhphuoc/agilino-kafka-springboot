@@ -3,7 +3,6 @@ package vn.agilino.workshop;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.SendResult;

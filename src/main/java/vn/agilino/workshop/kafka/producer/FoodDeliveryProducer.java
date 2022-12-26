@@ -1,13 +1,14 @@
 package vn.agilino.workshop.kafka.producer;
 
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import vn.agilino.workshop.configuration.KafkaTopic;
 import vn.agilino.workshop.dto.FoodOrderDTO;
 
+/**
+ * Kafka Producer will receive a message and send it to a given kafka topic.
+ */
 @Service
 public class FoodDeliveryProducer {
 
