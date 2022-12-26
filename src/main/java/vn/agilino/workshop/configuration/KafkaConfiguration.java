@@ -1,6 +1,8 @@
 package vn.agilino.workshop.configuration;
 
-import lombok.Getter;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -10,16 +12,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.core.*;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import vn.agilino.workshop.constant.KafkaGroup;
-import vn.agilino.workshop.dto.StudentDTO;
+import vn.agilino.workshop.dto.FoodOrderDTO;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@Getter
 @Configuration
 @EnableKafka
 public class KafkaConfiguration {
@@ -27,23 +29,23 @@ public class KafkaConfiguration {
     private String bootstrapServer;
 
     @Bean
-    public ConsumerFactory<String, StudentDTO> consumerFactory() {
+    public ConsumerFactory<String, FoodOrderDTO> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaGroup.GROUP_STUDENT);
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(StudentDTO.class));
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(FoodOrderDTO.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, StudentDTO> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, StudentDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, FoodOrderDTO> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, FoodOrderDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 
 
     @Bean
-    public ProducerFactory<String, StudentDTO> producerFactory() {
+    public ProducerFactory<String, FoodOrderDTO> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -52,7 +54,11 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, StudentDTO> kafkaTemplate(ProducerFactory<String, StudentDTO> producerFactory) {
+    public KafkaTemplate<String, FoodOrderDTO> kafkaTemplate(ProducerFactory<String, FoodOrderDTO> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
+    }
+
+    public String getBootstrapServer() {
+        return this.bootstrapServer;
     }
 }
