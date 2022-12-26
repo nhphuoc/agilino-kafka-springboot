@@ -30,7 +30,13 @@ docker-compose up -d
 ### Using curl to send messages
 Use curl to send a HTTP POST message in JSON format:
 ```bash
-curl -XPOST -H "content-type: application/json" http://localhost:8080/kafka/send -d "{\"name\":\"adam\"}"
+curl -XPOST -H "content-type: application/json" http://localhost:8080/deliver -d "{\"id\":1,\"foodName\":\"Pho Ga\",\"address\":\"agilino\"}"
+```
+
+To receive the order the order with id 123 run:
+
+```bash
+curl http://localhost:8080/receive?id=123
 ```
 
 ## Further reading
