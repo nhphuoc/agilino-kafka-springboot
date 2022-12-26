@@ -1,8 +1,18 @@
 # Getting Started
 
+[Agilino Vietnam](https://agilino.vn) is a software development company based in Can Tho.
+
+For our today`s exercise we want to implement a food delivery service called "Agilino Food".
+
+Follow the hints in the java files and make the unit tests run successful.
+
 ## Running the project
 
-### Connecting to kafka
+### Connecting to kafka 
+
+After all your unit tests pass run the application connecting to our server.
+
+* Connect to our Kafka available during workshop: 
 
 * start kafka locally with docker
 
@@ -10,7 +20,6 @@
 docker-compose up -d
 ```
 
-* TODO address for external docker
 
 ### Starting spring project
 
@@ -18,7 +27,30 @@ docker-compose up -d
 ./gradlew bootRun
 ```
 
+### Using curl to send messages
+Use curl to send a HTTP POST message in JSON format:
+```bash
+curl -XPOST -H "content-type: application/json" http://localhost:8080/deliver -d "{\"id\":1,\"foodName\":\"Pho Ga\",\"address\":\"agilino\"}"
+```
+
+To receive the order the order with id 123 run:
+
+```bash
+curl http://localhost:8080/receive?id=123
+```
+
 ## Further reading
+
+### Running your own kafka 
+
+When running at home we encourage you to use the docker-compose image to run kafka from docker.
+
+If your laptop has not enough space and RAM to run docker you can run kafka on the cloud.
+
+In our exercise we provided a public Kafka Server. This is just for demo.
+Kafka should in an internal network between your backend services not reachable from outside.
+
+For the sake of the demo we are using [nginx streams with docker](https://github.com/sarwarbhuiyan/kafka-nginx-reverseproxy).
 
 ### Reference Documentation
 For further reference, please consider the following sections:
